@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cut.c                                              :+:      :+:    :+:   */
+/*   es1.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfavero <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/30 15:01:03 by cfavero           #+#    #+#             */
-/*   Updated: 2017/12/01 19:23:36 by cfavero          ###   ########.fr       */
+/*   Created: 2017/11/27 11:57:24 by cfavero           #+#    #+#             */
+/*   Updated: 2017/12/01 18:30:10 by cfavero          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_list	*ft_cut(int pezzi, char *s)
+t_list	*ft_lstnew(void const *content, size_t content_size)
 {
-	t_list	*block;
-	t_list	*boh;
-	char	*str;
-	int		start;
+	t_list	*a;
 
-	start = 0;
-	block = (t_list*)malloc(sizeof(t_list));
-	while (pezzi--)
+	if (!(a = (t_list*)malloc(sizeof(t_list))))
+		return (NULL);
+	if (content != NULL)
 	{
-		str = ft_strsub(s, start, 20);
-		start = start + 21;
-		if (start == 21)
-		{
-			block = ft_lstnew(str, 20);
-			boh = block;
-		}
-		else
-		{
-			block->next = ft_lstnew(str, 20);
-			block = block->next;
-		}
+		if (!(a->content = malloc(content_size)))
+			return (NULL);
+		ft_memcpy(a->content, content, content_size);
+		a->content_size = content_size;
 	}
-	return (boh);
+	else
+	{
+		a->content = NULL;
+		a->content_size = 0;
+	}
+	a->next = NULL;
+	return (a);
 }

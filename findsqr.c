@@ -1,40 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cut.c                                              :+:      :+:    :+:   */
+/*   findsqr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfavero <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/30 15:01:03 by cfavero           #+#    #+#             */
-/*   Updated: 2017/12/01 19:23:36 by cfavero          ###   ########.fr       */
+/*   Created: 2017/12/02 17:03:38 by cfavero           #+#    #+#             */
+/*   Updated: 2017/12/02 17:23:53 by cfavero          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_list	*ft_cut(int pezzi, char *s)
+int		ft_small(int pezzi)
 {
-	t_list	*block;
-	t_list	*boh;
-	char	*str;
-	int		start;
+	int nb;
+	int j;
+	int k;
+	int a;
+	int b;
 
-	start = 0;
-	block = (t_list*)malloc(sizeof(t_list));
-	while (pezzi--)
+	nb = pezzi * 4;
+	a = 0;
+	b = 1;
+	j = 0;
+	while (j < 150)
 	{
-		str = ft_strsub(s, start, 20);
-		start = start + 21;
-		if (start == 21)
-		{
-			block = ft_lstnew(str, 20);
-			boh = block;
-		}
-		else
-		{
-			block->next = ft_lstnew(str, 20);
-			block = block->next;
-		}
+		j = a * a;
+		k = b * b;
+		if (j < nb && nb <= k)
+			return (b);
+		a++;
+		b++;
 	}
-	return (boh);
+	return (0);
 }

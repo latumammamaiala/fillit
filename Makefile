@@ -6,13 +6,14 @@
 #    By: cfavero <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/28 18:30:17 by cfavero           #+#    #+#              #
-#    Updated: 2017/11/30 16:41:29 by cfavero          ###   ########.fr        #
+#    Updated: 2017/12/02 17:24:00 by cfavero          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
-SRC = main check check2 source cut
+SRC = main check check2 source movepezzi cut ft_lstnew ft_strsub ft_memalloc \
+	  ft_memcpy ft_strnew test findsqr
 
 SRC_C = $(patsubst %,%.c,$(SRC))
 

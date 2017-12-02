@@ -6,7 +6,7 @@
 /*   By: cfavero <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/28 15:49:58 by cfavero           #+#    #+#             */
-/*   Updated: 2017/11/30 15:00:36 by cfavero          ###   ########.fr       */
+/*   Updated: 2017/12/02 17:13:00 by cfavero          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,9 @@ int main (int ac, char **av)
 		write (1, "The number of blocks are ", 25);
 		printf("%d", c_elem(str));
 	}
-		return (0);
+	printf("%c", '\n');
+	print(muovi(ft_cut(c_elem(str), str)));
+//	printf("%s", mv_left(str));
+	printf("%d", ft_small(c_elem(str)));
+	return (0);
 }

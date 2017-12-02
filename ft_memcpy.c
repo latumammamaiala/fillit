@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cut.c                                              :+:      :+:    :+:   */
+/*   memcpy.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfavero <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/30 15:01:03 by cfavero           #+#    #+#             */
-/*   Updated: 2017/12/01 19:23:36 by cfavero          ###   ########.fr       */
+/*   Created: 2017/11/12 18:43:30 by cfavero           #+#    #+#             */
+/*   Updated: 2017/12/01 18:36:30 by cfavero          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_list	*ft_cut(int pezzi, char *s)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	t_list	*block;
-	t_list	*boh;
-	char	*str;
-	int		start;
+	unsigned char	*s1;
+	unsigned char	*s2;
+	size_t			i;
 
-	start = 0;
-	block = (t_list*)malloc(sizeof(t_list));
-	while (pezzi--)
+	i = 0;
+	s1 = (unsigned char*)dst;
+	s2 = (unsigned char*)src;
+	while (i < n)
 	{
-		str = ft_strsub(s, start, 20);
-		start = start + 21;
-		if (start == 21)
-		{
-			block = ft_lstnew(str, 20);
-			boh = block;
-		}
-		else
-		{
-			block->next = ft_lstnew(str, 20);
-			block = block->next;
-		}
+		s1[i] = s2[i];
+		i++;
 	}
-	return (boh);
+	return (dst);
 }

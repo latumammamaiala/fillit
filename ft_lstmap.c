@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cut.c                                              :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfavero <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/30 15:01:03 by cfavero           #+#    #+#             */
-/*   Updated: 2017/12/01 19:23:36 by cfavero          ###   ########.fr       */
+/*   Created: 2017/11/27 15:38:52 by cfavero           #+#    #+#             */
+/*   Updated: 2017/12/01 18:29:22 by cfavero          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_list	*ft_cut(int pezzi, char *s)
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list	*block;
-	t_list	*boh;
-	char	*str;
-	int		start;
+	t_list	*fresh;
+	t_list	*tmp;
+	t_list	*start;
 
-	start = 0;
-	block = (t_list*)malloc(sizeof(t_list));
-	while (pezzi--)
+	tmp = f(lst);
+	fresh = ft_lstnew(tmp->content, tmp->content_size);
+	start = fresh;
+	lst = lst->next;
+	while (lst)
 	{
-		str = ft_strsub(s, start, 20);
-		start = start + 21;
-		if (start == 21)
-		{
-			block = ft_lstnew(str, 20);
-			boh = block;
-		}
-		else
-		{
-			block->next = ft_lstnew(str, 20);
-			block = block->next;
-		}
+		tmp = f(lst);
+		fresh->next = ft_lstnew(tmp->content, tmp->content_size);
+		fresh = fresh->next;
+		lst = lst->next;
 	}
-	return (boh);
+	return (start);
 }
